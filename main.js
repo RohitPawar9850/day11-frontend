@@ -11,3 +11,22 @@ function AddRecord()
 }
 
 // connect mongodb with day11-backend
+
+async function ReadRecord()
+{
+    let uri = `http://localhost:4000/findAll`;
+    let res = await fetch(uri);
+    //console.log(res);
+    let list = await res.json();
+    console.log(list);
+
+   
+for (let item of list) {
+    let parentRef = document.querySelector("#parent");
+    let existingValue = parentRef.innerHTML;
+    let newValue = `<h1>${item.message}</h1>`;
+
+    parentRef.innerHTML = newValue + existingValue;
+  }
+}
+
